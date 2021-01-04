@@ -1,12 +1,9 @@
 /* 
- * °´Ã¼ÁöÇâÇÁ·Î±×·¡¹Ö
- * 2015405060 ¿Â½ÂÂù
- * ±â¸»°í»ç ÇÁ·ÎÁ§Æ®
  * ----------------
- * ÇÁ·ÎÁ§Æ®¸í
- * > ±¤¿î´ë COVID-19 ÀÚ°¡Áø´Ü ÇÁ·Î±×·¥
+ * í”„ë¡œì íŠ¸ëª…
+ * > ê´‘ìš´ëŒ€ COVID-19 ìê°€ì§„ë‹¨ í”„ë¡œê·¸ë¨
  * ----------------
- * ÀÎÅÍÆäÀÌ½º, Á¦³×¸¯, ÄÃ·º¼Ç ÇÁ·¹ÀÓ¿öÅ©, ¶÷´Ù »ç¿ë
+ * ì¸í„°í˜ì´ìŠ¤, ì œë„¤ë¦­, ì»¬ë ‰ì…˜ í”„ë ˆì„ì›Œí¬, ëŒë‹¤ ì‚¬ìš©
  */ 
 
 import java.util.ArrayList;
@@ -14,19 +11,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-// ÀÔ·Â¹ŞÀº ÇĞ»ı Ãâ·Â ÀÎÅÍÆäÀÌ½º[ÃßÈÄ¿¡ ¶÷´Ù½ÄÀ» ÅëÇØ Á¤ÀÇ]
+// ì…ë ¥ë°›ì€ í•™ìƒ ì¶œë ¥ ì¸í„°í˜ì´ìŠ¤[ì¶”í›„ì— ëŒë‹¤ì‹ì„ í†µí•´ ì •ì˜]
 interface PrintInfo<ID>{
 	void printInfo(int age_,ID studentID_);
 }
 
-// ÀÚ°¡Áø´Ü ÀÎÅÍÆäÀÌ½º [³»±¹ÀÎ ÇĞ»ı, ¿Ü±¹ÀÎ ÇĞ»ıÀÇ ¼¿ÇÁÃ¼Å© ¹× °á°ú Ãâ·Â ±â´É]
+// ìê°€ì§„ë‹¨ ì¸í„°í˜ì´ìŠ¤ [ë‚´êµ­ì¸ í•™ìƒ, ì™¸êµ­ì¸ í•™ìƒì˜ ì…€í”„ì²´í¬ ë° ê²°ê³¼ ì¶œë ¥ ê¸°ëŠ¥]
 interface SelfChecker{	
 	public void check();
 	public int analysis();
 }
 
-// ³»±¹ÀÎ ÇĞ»ı, ¿Ü±¹ÀÎ ÇĞ»ıÀÇ ºÎ¸ğ Å¬·¡½º
-class Student<ID> {	// Á¦³×¸¯ : ¿Ü±¹ÀÎ ÇĞ»ıÀÇ °æ¿ì student ID°¡ ÇĞ¹ø(int)ÀÌ ¾Æ´Ò ½Ã String À¸·Î »ç¿ëÇÒ ¼ö ÀÖµµ·Ï Ã³¸®
+// ë‚´êµ­ì¸ í•™ìƒ, ì™¸êµ­ì¸ í•™ìƒì˜ ë¶€ëª¨ í´ë˜ìŠ¤
+class Student<ID> {	// ì œë„¤ë¦­ : ì™¸êµ­ì¸ í•™ìƒì˜ ê²½ìš° student IDê°€ í•™ë²ˆ(int)ì´ ì•„ë‹ ì‹œ String ìœ¼ë¡œ ì‚¬ìš©í•  ìˆ˜ ìˆë„ë¡ ì²˜ë¦¬
 	private int age;
 	private ID studentID;
 	
@@ -39,78 +36,78 @@ class Student<ID> {	// Á¦³×¸¯ : ¿Ü±¹ÀÎ ÇĞ»ıÀÇ °æ¿ì student ID°¡ ÇĞ¹ø(int)ÀÌ ¾Æ´Ò
 	public ID getStudentID() {return studentID;}
 }
 
-// ³»±¹ÀÎ ÇĞ»ı Å¬·¡½º
+// ë‚´êµ­ì¸ í•™ìƒ í´ë˜ìŠ¤
 class Korean<ID> extends Student implements SelfChecker{
-	List<Integer> list = new ArrayList<>();	// ÄÃ·º¼Ç ÇÁ·¹ÀÓ¿öÅ© : List ÀÌ¿ë 
-											// [ÀÔ·ÂÇÑ ¹®Ç×µéÀ» ArrayList¿¡ ÀúÀå ÈÄ °á°úÃâ·Â ¿¬»ê¿¡ »ç¿ë]
+	List<Integer> list = new ArrayList<>();	// ì»¬ë ‰ì…˜ í”„ë ˆì„ì›Œí¬ : List ì´ìš© 
+											// [ì…ë ¥í•œ ë¬¸í•­ë“¤ì„ ArrayListì— ì €ì¥ í›„ ê²°ê³¼ì¶œë ¥ ì—°ì‚°ì— ì‚¬ìš©]
 	
 	public Korean(int age, ID studentID) {
 		super(age, studentID);
 	}
-	// ÀÚ°¡Áø´Ü Å¬·¡½º SelfChecker ÀÎÅÍÆäÀÌ½ºÀÇ ¸Ş¼Òµå Á¤ÀÇ
+	// ìê°€ì§„ë‹¨ í´ë˜ìŠ¤ SelfChecker ì¸í„°í˜ì´ìŠ¤ì˜ ë©”ì†Œë“œ ì •ì˜
 	public void check() {
 		int cntCheck= 0;
 		Scanner sc = new Scanner(System.in);
 		
-		PrintInfo lamda = (age_, studentID_) -> { // ¶÷´Ù½ÄÀ» ÀÌ¿ëÇØ¼­ ÀÔ·Â¹ŞÀº ÇĞ»ı Å¬·¡½º Ãâ·Â
-			System.out.println("\n³ªÀÌ: " + age_ +"»ì \nÇĞ¹ø: "+studentID_);
+		PrintInfo lamda = (age_, studentID_) -> { // ëŒë‹¤ì‹ì„ ì´ìš©í•´ì„œ ì…ë ¥ë°›ì€ í•™ìƒ í´ë˜ìŠ¤ ì¶œë ¥
+			System.out.println("\në‚˜ì´: " + age_ +"ì‚´ \ní•™ë²ˆ: "+studentID_);
 		};
 		lamda.printInfo(getAge(), getStudentID());	
 		
-		System.out.println("\n*** ÇØ´çÇÏ´Â ¹øÈ£ÀÇ ¼ıÀÚ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä. *** [ex) 1]");
-		System.out.println("1. ÄÚ·Î³ª19 È®ÁøÀÚÀÇ Á¢ÃË·Â ¹× ¿ªÇÑÀû ¿¬°ü¼º");
-		System.out.println("	1-1. ÃÖ±Ù 14ÀÏ ÀÌ³»¿¡ º»ÀÎ ¶Ç´Â µ¿°Å°¡Á·ÀÌ ÄÚ·Î³ª19 È®ÁøÈ¯ÀÚ¿Í Á¢ÃËÇÑ ÀûÀÌ ÀÖ½À´Ï±î?");
-		System.out.println("		1. Á¢ÃËÇÑ Àû ÀÖÀ½	2.Á¢ÃËÇÑ Àû ¾øÀ½");
+		System.out.println("\n*** í•´ë‹¹í•˜ëŠ” ë²ˆí˜¸ì˜ ìˆ«ìë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”. *** [ex) 1]");
+		System.out.println("1. ì½”ë¡œë‚˜19 í™•ì§„ìì˜ ì ‘ì´‰ë ¥ ë° ì—­í•œì  ì—°ê´€ì„±");
+		System.out.println("	1-1. ìµœê·¼ 14ì¼ ì´ë‚´ì— ë³¸ì¸ ë˜ëŠ” ë™ê±°ê°€ì¡±ì´ ì½”ë¡œë‚˜19 í™•ì§„í™˜ìì™€ ì ‘ì´‰í•œ ì ì´ ìˆìŠµë‹ˆê¹Œ?");
+		System.out.println("		1. ì ‘ì´‰í•œ ì  ìˆìŒ	2.ì ‘ì´‰í•œ ì  ì—†ìŒ");
 		System.out.print("		>> ");
 		list.add(sc.nextInt());
-		System.out.println("	1-2. ÃÖ±Ù 14ÀÏ ÀÌ³»¿¡ º»ÀÎ ¶Ç´Â µ¿°Å°¡Á·ÀÌ ÇØ¿Ü¿¡ ¹æ¹®ÇÑ ÀûÀÌ ÀÖ½À´Ï±î?");
-		System.out.println("		1. ¹æ¹®ÇÑ Àû ÀÖÀ½	2.ÇØ´ç¾øÀ½");
+		System.out.println("	1-2. ìµœê·¼ 14ì¼ ì´ë‚´ì— ë³¸ì¸ ë˜ëŠ” ë™ê±°ê°€ì¡±ì´ í•´ì™¸ì— ë°©ë¬¸í•œ ì ì´ ìˆìŠµë‹ˆê¹Œ?");
+		System.out.println("		1. ë°©ë¬¸í•œ ì  ìˆìŒ	2.í•´ë‹¹ì—†ìŒ");
 		System.out.print("		>> ");
 		list.add(sc.nextInt());
-		System.out.println("	1-3. ÃÖ±Ù 14ÀÏ ÀÌ³»¿¡ ÄÚ·Î³ª19 È®ÁøÀÚ°¡ ¹ß»ıÇÑ Áı´Ü½Ã¼³ ¹× ¹ĞÆó°ø°£À» ÀÌ¿ëÇÑ ÀûÀÌ ÀÖ½À´Ï±î?");
-		System.out.println("		1. ºù¹®ÇÑ Àû ÀÖÀ½	2.ÇØ´ç¾øÀ½");
+		System.out.println("	1-3. ìµœê·¼ 14ì¼ ì´ë‚´ì— ì½”ë¡œë‚˜19 í™•ì§„ìê°€ ë°œìƒí•œ ì§‘ë‹¨ì‹œì„¤ ë° ë°€íê³µê°„ì„ ì´ìš©í•œ ì ì´ ìˆìŠµë‹ˆê¹Œ?");
+		System.out.println("		1. ë¹™ë¬¸í•œ ì  ìˆìŒ	2.í•´ë‹¹ì—†ìŒ");
 		System.out.print("		>> ");
 		list.add(sc.nextInt());
-		System.out.println("2. ¹ß¿­¿©ºÎÈ®ÀÎ (*37.5µµ ÀÌ»ó½Ã 2È¸ Ã¼Å©ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.)");
-		System.out.println("	1. 37.5µµ ÀÌ»ó	2.37.5µµ ¹Ì¸¸");
+		System.out.println("2. ë°œì—´ì—¬ë¶€í™•ì¸ (*37.5ë„ ì´ìƒì‹œ 2íšŒ ì²´í¬í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.)");
+		System.out.println("	1. 37.5ë„ ì´ìƒ	2.37.5ë„ ë¯¸ë§Œ");
 		System.out.print("		>> ");
 		list.add(sc.nextInt());
-		System.out.println("3. ÇØ¿­Á¦ ¹× ÁøÅëÁ¦ º¹¿ë ¿©ºÎ");
-		System.out.println("	1. ÇØ¿­Á¦	2.ÁøÅëÁ¦ 3.º¹¿ëÇÏÁö ¾ÊÀ½");
+		System.out.println("3. í•´ì—´ì œ ë° ì§„í†µì œ ë³µìš© ì—¬ë¶€");
+		System.out.println("	1. í•´ì—´ì œ	2.ì§„í†µì œ 3.ë³µìš©í•˜ì§€ ì•ŠìŒ");
 		System.out.print("		>> ");
 		list.add(sc.nextInt());
-		System.out.println("4. Áõ»óÈ®ÀÎ");
-		System.out.println("	| ¹ß¿­(ÁÖ°üÀû È£¼Ò Æ÷ÇÔ) | È£Èí±âÁõ¼º(±âÄ§,°¡·¡,ÀÎÈÄÅë,È£Èí°ï¶õ) | È£Èí±âÁõ»ó ¿Ü(±ÙÀ°Åë,¿ÀÇÑ,±ÇÅÂ°¨) | Æó·Å");
-		System.out.println("	À§ÀÇ Áõ»ó Áß ÇÏ³ª¶óµµ ¹ß»ı ½Ã 1¹ø ÀÔ·Â, ÇØ´ç¾ø´Â °æ¿ì 2¹ø ÀÔ·Â");
+		System.out.println("4. ì¦ìƒí™•ì¸");
+		System.out.println("	| ë°œì—´(ì£¼ê´€ì  í˜¸ì†Œ í¬í•¨) | í˜¸í¡ê¸°ì¦ì„±(ê¸°ì¹¨,ê°€ë˜,ì¸í›„í†µ,í˜¸í¡ê³¤ë€) | í˜¸í¡ê¸°ì¦ìƒ ì™¸(ê·¼ìœ¡í†µ,ì˜¤í•œ,ê¶Œíƒœê°) | íë ´");
+		System.out.println("	ìœ„ì˜ ì¦ìƒ ì¤‘ í•˜ë‚˜ë¼ë„ ë°œìƒ ì‹œ 1ë²ˆ ì…ë ¥, í•´ë‹¹ì—†ëŠ” ê²½ìš° 2ë²ˆ ì…ë ¥");
 		System.out.print("		>> ");
 		list.add(sc.nextInt());
 	}
 	
-	// °á°ú°ª ºĞ¼® ÈÄ Ãâ·Â
-	// ¹İÈ¯ °ªÀº °Ë»ç ÈÄ Æ÷ÇÔµÇ´Â ±×·ì¿¡ µû¶ó ´Ù¸§ [ºñÀ§Çè±º:1, À§Çè±º:2, °íÀ§Çè±º:3]
+	// ê²°ê³¼ê°’ ë¶„ì„ í›„ ì¶œë ¥
+	// ë°˜í™˜ ê°’ì€ ê²€ì‚¬ í›„ í¬í•¨ë˜ëŠ” ê·¸ë£¹ì— ë”°ë¼ ë‹¤ë¦„ [ë¹„ìœ„í—˜êµ°:1, ìœ„í—˜êµ°:2, ê³ ìœ„í—˜êµ°:3]
 	public int analysis() {
 		int cnt = 0;
 		Iterator iter = list.iterator();
-		while(iter.hasNext()){//´ÙÀ½°ªÀÌ ÀÖ´ÂÁö Ã¼Å©
+		while(iter.hasNext()){//ë‹¤ìŒê°’ì´ ìˆëŠ”ì§€ ì²´í¬
 		    if((int)iter.next() == 1) cnt++;
 		}
 		if(cnt == 0) {
 			System.out.println("\n************************************************************************");
-			System.out.println("*! À§Çè±º¿¡ ¼ÓÇÏÁø ¾Ê½À´Ï´Ù. ¸¶½ºÅ© Âø¿ë ¹× ¼Õ¾Ä±â¸¦ »ıÈ°È­ÇØÁÖ½Ã°í ´ÙÁßÀÌ¿ë½Ã¼³À» ÇÇÇØÁÖ¼¼¿ä.*");
+			System.out.println("*! ìœ„í—˜êµ°ì— ì†í•˜ì§„ ì•ŠìŠµë‹ˆë‹¤. ë§ˆìŠ¤í¬ ì°©ìš© ë° ì†ì”»ê¸°ë¥¼ ìƒí™œí™”í•´ì£¼ì‹œê³  ë‹¤ì¤‘ì´ìš©ì‹œì„¤ì„ í”¼í•´ì£¼ì„¸ìš”.*");
 			System.out.println("************************************************************************\n");
 			System.out.println("\n------------------------------------------------------------------------------\n");
 			return 1;
 		}
 		else if(cnt > 0 && cnt <4) {
 			System.out.println("\n*******************************************************************************");
-			System.out.println("*!! À§Çè±º¿¡ ¼ÓÇÕ´Ï´Ù. ´ÙÁßÀÌ¿ë½Ã¼³ ÀÌ¿ëÀ» »ï°¡ÇØÁÖ½Ã°í ÄÚ·Î³ª °Ë»ç ÈÄ ÀÚ°¡°İ¸® ¿©ºÎ ÆÇ´Ü ºÎÅ¹µå¸³´Ï´Ù.*");
+			System.out.println("*!! ìœ„í—˜êµ°ì— ì†í•©ë‹ˆë‹¤. ë‹¤ì¤‘ì´ìš©ì‹œì„¤ ì´ìš©ì„ ì‚¼ê°€í•´ì£¼ì‹œê³  ì½”ë¡œë‚˜ ê²€ì‚¬ í›„ ìê°€ê²©ë¦¬ ì—¬ë¶€ íŒë‹¨ ë¶€íƒë“œë¦½ë‹ˆë‹¤.*");
 			System.out.println("*******************************************************************************\n");
 			System.out.println("\n------------------------------------------------------------------------------\n");
 			return 2;
 		}
 		else if(cnt > 3) {
 			System.out.println("\n**********************************************************");
-			System.out.println("*!!! °íÀ§Çè±º¿¡ ¼ÓÇÕ´Ï´Ù. °¡±î¿î ¼±º°Áø·á¼Ò¿¡¼­ ÄÚ·Î³ª °Ë»ç¸¦ ¹Ş±â¹Ù¶ø´Ï´Ù.*");
+			System.out.println("*!!! ê³ ìœ„í—˜êµ°ì— ì†í•©ë‹ˆë‹¤. ê°€ê¹Œìš´ ì„ ë³„ì§„ë£Œì†Œì—ì„œ ì½”ë¡œë‚˜ ê²€ì‚¬ë¥¼ ë°›ê¸°ë°”ëë‹ˆë‹¤.*");
 			System.out.println("**********************************************************\n");
 			System.out.println("\n------------------------------------------------------------------------------\n");
 			return 3;
@@ -121,7 +118,7 @@ class Korean<ID> extends Student implements SelfChecker{
 	}
 }
 
-// ¿Ü±¹ÀÎ ÇĞ»ı Å¬·¡½º [³»±¹ÀÎ ÇĞ»ı°ú ´Ù¸£°Ô Áú¹®Áö ¹®Ç×À» ¿µ¾î·Î Ãâ·ÂÇÏ¸ç studentID°¡ ÇĞ¹ø(int)ÀÌ ¾Æ´Ô]
+// ì™¸êµ­ì¸ í•™ìƒ í´ë˜ìŠ¤ [ë‚´êµ­ì¸ í•™ìƒê³¼ ë‹¤ë¥´ê²Œ ì§ˆë¬¸ì§€ ë¬¸í•­ì„ ì˜ì–´ë¡œ ì¶œë ¥í•˜ë©° studentIDê°€ í•™ë²ˆ(int)ì´ ì•„ë‹˜]
 class Foreigner<ID> extends Student implements SelfChecker{
 	List<Integer> list = new ArrayList<>();
 	
@@ -133,7 +130,7 @@ class Foreigner<ID> extends Student implements SelfChecker{
 		int cntCheck= 0;
 		Scanner sc = new Scanner(System.in);
 		
-		PrintInfo lamda = (age_, studentID_) -> { // ¶÷´Ù½ÄÀ» ÀÌ¿ëÇØ¼­ ÀÔ·Â¹ŞÀº ÇĞ»ı Å¬·¡½º Ãâ·Â
+		PrintInfo lamda = (age_, studentID_) -> { // ëŒë‹¤ì‹ì„ ì´ìš©í•´ì„œ ì…ë ¥ë°›ì€ í•™ìƒ í´ë˜ìŠ¤ ì¶œë ¥
 			System.out.println("\nAge: " + age_+" \nStudentID: "+ studentID_);
 		};
 		lamda.printInfo(getAge(), getStudentID());	
@@ -169,7 +166,7 @@ class Foreigner<ID> extends Student implements SelfChecker{
 	public int analysis() {	
 		int cnt = 0;
 		Iterator iter = list.iterator();
-		while(iter.hasNext()){//´ÙÀ½°ªÀÌ ÀÖ´ÂÁö Ã¼Å©
+		while(iter.hasNext()){//ë‹¤ìŒê°’ì´ ìˆëŠ”ì§€ ì²´í¬
 		    if((int)iter.next() == 1) cnt++;
 		}
 		if(cnt == 0) {
@@ -201,31 +198,31 @@ class Foreigner<ID> extends Student implements SelfChecker{
 public class main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("±¤¿î´ë COVID-19 ÀÚ°¡Áø´Ü ÇÁ·Î±×·¥");
+		System.out.println("ê´‘ìš´ëŒ€ COVID-19 ìê°€ì§„ë‹¨ í”„ë¡œê·¸ë¨");
 		System.out.println();
 		
-		// ³»±¹ÀÎ, ¿Ü±¹ÀÎ¿ë Å¬·¡½º ¹è¿­ µû·Î »ı¼º
+		// ë‚´êµ­ì¸, ì™¸êµ­ì¸ìš© í´ë˜ìŠ¤ ë°°ì—´ ë”°ë¡œ ìƒì„±
 		Korean[] kor = new Korean[100];
 		Foreigner[] frg = new Foreigner[100];
 		
 		int check,age = 0, cntKor = 0, cntFrg = 0,intStudentId = 0;
-		int nomal = 0, danger = 0, highRisk = 0;		// ÀÚ°¡Áø´Ü ½Ç½Ã ÇĞ»ıÀ» ºñÀ§Çè±º, À§Çè±º, °íÀ§Çè±ºÀ¸·Î ±¸ºĞ
+		int nomal = 0, danger = 0, highRisk = 0;		// ìê°€ì§„ë‹¨ ì‹¤ì‹œ í•™ìƒì„ ë¹„ìœ„í—˜êµ°, ìœ„í—˜êµ°, ê³ ìœ„í—˜êµ°ìœ¼ë¡œ êµ¬ë¶„
 		String strStudentId = null;
 		while(true) {
 			do {
 				check = 0;
-				System.out.println("Áö±İ±îÁö ÀÚ°¡Áø´ÜÀ» ½Ç½ÃÇÑ ÇĞ»ı ¼ö " + (cntKor + cntFrg) + "¸í Áß");
-				System.out.println("À§Çè±ºÀº " + danger + "¸í ÀÌ¸ç");
-				System.out.println("°íÀ§Çè±ºÀº " + highRisk + "¸í ÀÔ´Ï´Ù.\n");
-				System.out.println("³»±¹ÀÎÀÌ¸é 1¹ø, ¿Ü±¹ÀÎÀÌ¸é 2¹øÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.\n(if you korean, enter 1. if not, enter 2)");
+				System.out.println("ì§€ê¸ˆê¹Œì§€ ìê°€ì§„ë‹¨ì„ ì‹¤ì‹œí•œ í•™ìƒ ìˆ˜ " + (cntKor + cntFrg) + "ëª… ì¤‘");
+				System.out.println("ìœ„í—˜êµ°ì€ " + danger + "ëª… ì´ë©°");
+				System.out.println("ê³ ìœ„í—˜êµ°ì€ " + highRisk + "ëª… ì…ë‹ˆë‹¤.\n");
+				System.out.println("ë‚´êµ­ì¸ì´ë©´ 1ë²ˆ, ì™¸êµ­ì¸ì´ë©´ 2ë²ˆì„ ì…ë ¥í•´ì£¼ì„¸ìš”.\n(if you korean, enter 1. if not, enter 2)");
 				System.out.print(">> ");
 				check = sc.nextInt();
 		
 				if(check == 1) {
-					System.out.println("ÇĞ¹øÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä. [ex) 2015405060]");
+					System.out.println("í•™ë²ˆì„ ì…ë ¥í•´ì£¼ì„¸ìš”. [ex) 2015405060]");
 					System.out.print(">> ");
 					intStudentId = sc.nextInt();
-					System.out.println("³ªÀÌ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä. [ex) 26]");
+					System.out.println("ë‚˜ì´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”. [ex) 26]");
 					System.out.print(">> ");
 					age = sc.nextInt();
 					cntKor++;
@@ -240,21 +237,21 @@ public class main {
 					cntFrg++;
 				}
 				else 
-					System.out.println("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.(Please Enter again.)");
+					System.out.println("ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.(Please Enter again.)");
 			} while(check != 1 && check != 2);
 			
 			if(check == 1) {
 				kor[cntKor]= new Korean(age,intStudentId);
-				kor[cntKor].check();	// ÀÚ°¡Áø´Ü
-				int rst = kor[cntKor].analysis();	// ÀÚ°¡Áø´Ü °á°ú Ãâ·Â
+				kor[cntKor].check();	// ìê°€ì§„ë‹¨
+				int rst = kor[cntKor].analysis();	// ìê°€ì§„ë‹¨ ê²°ê³¼ ì¶œë ¥
 				if(rst == 2) danger++;
 				else if(rst == 3) highRisk++;
 			}
 			
 			else if(check == 2) {
 				frg[cntFrg]= new Foreigner(age,strStudentId);
-				frg[cntFrg].check();	// ÀÚ°¡Áø´Ü
-				int rst = frg[cntFrg].analysis();	// ÀÚ°¡Áø´Ü °á°ú Ãâ·Â
+				frg[cntFrg].check();	// ìê°€ì§„ë‹¨
+				int rst = frg[cntFrg].analysis();	// ìê°€ì§„ë‹¨ ê²°ê³¼ ì¶œë ¥
 				if(rst == 2) danger++;
 				else if(rst == 3) highRisk++;
 			}
