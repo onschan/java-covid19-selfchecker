@@ -1,2 +1,1 @@
-# Java_Project
-Project using Java
+#Project using Java
